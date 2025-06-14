@@ -1,0 +1,75 @@
+{
+  "createdAt": "2025-05-16T09:39:51.553Z",
+  "updatedAt": "2025-05-16T09:39:51.553Z",
+  "id": "d0UFVSGUVm1ZX3mF",
+  "name": "My workflow",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bf538a35-cc4b-402a-8be7-8d5b3c6b36d8",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "36f6da9d-2c7c-4119-9145-ffd62bf85c5e",
+      "name": "Webhook",
+      "webhookId": "bf538a35-cc4b-402a-8be7-8d5b3c6b36d8"
+    },
+    {
+      "parameters": {
+        "path": "cc33b771-f73d-4d91-bbd3-175869300fb7"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        200
+      ],
+      "id": "d6f04a36-4271-4382-bc2c-fe1a9f3a6de8",
+      "name": "MCP Server Trigger",
+      "webhookId": "cc33b771-f73d-4d91-bbd3-175869300fb7"
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://mcpo.pc.simensky.org/docker"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        420
+      ],
+      "id": "321ef971-0418-4249-905b-fab53f686a6d",
+      "name": "MCP Client"
+    }
+  ],
+  "connections": {
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "6fb73879-87d7-4344-9b63-627e67c96bda",
+  "triggerCount": 0,
+  "tags": []
+}
