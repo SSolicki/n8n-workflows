@@ -1,0 +1,104 @@
+{
+  "createdAt": "2025-06-14T12:15:25.022Z",
+  "updatedAt": "2025-06-14T12:15:25.022Z",
+  "id": "W9E0tpeIzbYyQ6ar",
+  "name": "My workflow 2",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $json.body.document_text }}",
+        "name": "={{ $json.body.document_title }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1914m3M7kRzkd5RJqAfzRY9EBcJrKemZC",
+          "mode": "list",
+          "cachedResultName": "Meeting Notes",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1914m3M7kRzkd5RJqAfzRY9EBcJrKemZC"
+        },
+        "options": {
+          "convertToGoogleDocument": true
+        }
+      },
+      "id": "1b5b08c4-e6e3-4ee9-b046-fa588b61f2d3",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b5804ba2-a370-44af-92cc-5099b9f44cfc",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d8db9fa3-04fe-43c8-9acf-e1912463477f",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9c75d941-7895-46f9-adea-510ce796b2ec",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "d8db9fa3-04fe-43c8-9acf-e1912463477f"
+    }
+  ],
+  "connections": {
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "5518655e-3a4c-472e-aaaa-c134a6b2f126",
+  "triggerCount": 0,
+  "tags": []
+}
